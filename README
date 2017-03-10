@@ -13,12 +13,25 @@ Install and set up virtualenv
 Clone the project
     git clone https://github.com/schmidtvl/hackbot.git
 
-  1. Set up the virtualenv in env/ under root directory of project
+  1. Name your bot or work on an existing bot
+          mkdir [BOT_NAME]
+          cd [BOT_NAME]
+        or
+          cd [EXISTING_BOT_NAME]
+
+  2. Set up the virtualenv in env/ under root directory of your bot
           mkdir env
           virtualenv env
 
-  2. Activate the virtual env
+  3. Activate the virtual env
           source bin/env/activate
 
-  3. Install the slackclient
-          pip install slackclient
+  4. Install requirements
+      4a. You've created a brand new bot
+          cp ../requirements.txt .
+          pip install -r requirements.txt
+      4b. This is an existing bot
+          pip install -r requirements.txt
+
+
+Now you should be set up and ready to go. Individual bots may have more specific requirements
