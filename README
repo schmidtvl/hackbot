@@ -11,7 +11,7 @@ Install and set up virtualenv
   https://virtualenv.pypa.io/en/stable/
 
   1. Set up the virtualenv ENV variable as the root directory of the project
-          virtualenv .
+          virtualenv env
 
   2. Activate the virtual env
           source bin/activate
