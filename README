@@ -10,11 +10,15 @@ Install pip
 Install and set up virtualenv
   https://virtualenv.pypa.io/en/stable/
 
-  1. Set up the virtualenv ENV variable as the root directory of the project
+Clone the project
+    git clone https://github.com/schmidtvl/hackbot.git
+
+  1. Set up the virtualenv in env/ under root directory of project
+          mkdir env
           virtualenv env
 
   2. Activate the virtual env
-          source bin/activate
+          source bin/env/activate
 
   3. Install the slackclient
           pip install slackclient
