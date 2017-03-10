@@ -1,1 +1,20 @@
-Placeholder
+//**********************************************************************
+*
+*                   SETUP
+*
+***********************************************************************//
+
+Install pip
+  https://pip.pypa.io/en/stable/
+
+Install and set up virtualenv
+  https://virtualenv.pypa.io/en/stable/
+
+  1. Set up the virtualenv ENV variable as the root directory of the project
+          virtualenv .
+
+  2. Activate the virtual env
+          source bin/activate
+
+  3. Install the slackclient
+          pip install slackclient
