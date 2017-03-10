@@ -28,10 +28,10 @@ Clone the project
 
   4. Install requirements
       4a. You've created a brand new bot
-          cp ../requirements.txt .
-          pip install -r requirements.txt
+            cp ../requirements.txt .
+            pip install -r requirements.txt
       4b. This is an existing bot
-          pip install -r requirements.txt
+            pip install -r requirements.txt
 
 
 Now you should be set up and ready to go. Individual bots may have more specific requirements
