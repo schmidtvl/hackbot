@@ -1,28 +1,27 @@
 import wikipedia
 
-def getMovieUrl(title):
-    urls=[]
+def getMoviePage(title):
+    pages=[]
 
     try:
-        page = wikipedia.page(title + " (film)")
-        urls.append(page.url)
+        if title.endswith(" film)"):
+            pages.append(wikipedia.page(title))
+        else:
+            pages.append(wikipedia.page(title + " (film)"))
     except wikipedia.exceptions.DisambiguationError as e:
+        import pdb; pdb.set_trace()
         for result in e.options:
             if "film)" in result:
-                page = wikipedia.page(result)
-                urls.append(page.url)
+                pages.append(wikipedia.page(result))
     except wikipedia.exceptions.PageError:
         try:
-            results = wikipedia.search(title + " (film)")
-            page = wikipedia.page(results[0])
-            urls.append(page.url)
+            pages.append(wikipedia.page(title))
         except wikipedia.exceptions.DisambiguationError as e:
             for result in e.options:
-                if "video game)" in result:
-                    page = wikipedia.page(result)
-                    urls.append(page.url)
+                if "film)" in result:
+                    pages.append(wikipedia.page(result))
 
-    return urls
+    return pages
 
 def getGameUrl(title):
     urls=[]
