@@ -10,6 +10,10 @@ def calc_windchill(T,V):
     return int(round(c1 + c2 - c3 + c4))
 
 def get(location):
+    if location and location == "help":
+        return ( "Looks up the current weather for anywhere you'd like. "
+        "Defaults to Winnipeg (ex. !weather Berlin, Germany)"
+        )
     if not location:
         location = "winnipeg"
     key = "16942d985928497a9c7cabb4b3b924ec"

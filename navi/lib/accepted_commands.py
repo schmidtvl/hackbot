@@ -1,6 +1,7 @@
 def get():
     accepted_commands = [
         "weather",
+        "gamemusic",
         "test"
     ]
 

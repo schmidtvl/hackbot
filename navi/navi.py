@@ -8,9 +8,8 @@ from lib.bot import bot_parse
 from lib.bot import make_client
 from lib import accepted_commands
 
-import lib.weather.weather as weather
-
-import pdb
+from lib.weather import weather
+from lib.dj.gamemusic import DJ
 
 class Navi():
     _BOT_ID = os.environ.get("BOT_ID")
@@ -42,6 +41,15 @@ class Navi():
         if command in accepted_commands.get():
             if command == "weather":
                 result = weather.get(options)
+            elif command == "gamemusic":
+                gamedj = DJ()
+                if options:
+                    # Adding a song
+                    result = gamedj.add_entry(options)
+                else:
+                    # Getting random song
+                    result = gamedj.get_random()
+
             elif command == "test":
                 result = "This is a test"
             else:

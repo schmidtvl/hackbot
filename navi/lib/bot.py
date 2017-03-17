@@ -9,6 +9,8 @@ def bot_command(command, result, custom):
     response = custom + "\n\n"
     if command == "weather":
         response += result
+    elif command == "gamemusic":
+        response += result
     elif command == "test":
         response += "You did test"
     else:
