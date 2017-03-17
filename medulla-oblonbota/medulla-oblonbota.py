@@ -22,15 +22,27 @@ def handled_command(command, channel):
     """
     response = "Not sure what you mean. Use one of the supported commands."
     if command.startswith("find movie: "):
-        result = wiki.getMovieUrl(command[13:])
-        if(len(result) > 1):
+        result = wiki.getMovieUrl(command.split(":",1)[1])
+        if len(result) > 1:
             response = "Multiple results found:"
             for url in result:
                 response += "\n" + url
-        else:
+        elif len(result) > 0:
             response = result[0]
-    if command.startswith(EXAMPLE_COMMAND):
-        response = "Nothing's implemented yet, bud."
+        elif len(result) == 0:
+            response = "Could not find a movie with that name."
+    elif command.startswith("find video game: "):
+        result = wiki.getGameUrl(command.split(":",1)[1])
+        if len(result) > 1:
+            response = "Multiple results found:"
+            for url in result:
+                response += "\n" + url
+        elif len(result) > 0:
+            response = result[0]
+        elif len(result) == 0:
+            response = "Could not find a game with that name."
+    elif command.startswith("get random"):
+        response = wiki.getRandomPage()
     slack_client.api_call("chat.postMessage", channel=channel, text=response, as_user=True)
 
 def parse_slack_output(slack_rtm_output):
@@ -42,9 +54,13 @@ def parse_slack_output(slack_rtm_output):
     output_list = slack_rtm_output
     if output_list and len(output_list) > 0:
         for output in output_list:
-            if output and 'text' in output and AT_BOT in output['text']:
+            if output and 'text' in output and (AT_BOT in output['text']):
                 # return text after the @ mention, whitespace removed
                 return output['text'].split(AT_BOT)[1].strip().lower(), \
+                        output['channel']
+            elif output and 'text' in output and ('!hey' in output['text']):
+                # return text after the @ mention, whitespace removed
+                return output['text'].split('!hey')[1].strip().lower(), \
                         output['channel']
     return None, None
 
