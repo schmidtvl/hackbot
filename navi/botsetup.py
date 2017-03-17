@@ -2,10 +2,13 @@
 
 import os
 from slackclient import SlackClient
+from lib import api_key
 import pdb
 
+
 BOT_NAME = 'navi'
-slack_client = SlackClient(os.environ.get('SLACK_BOT_TOKEN'))
+key = api_key.get_key()
+slack_client = SlackClient(key)
 
 command_bot_id_set = '[ -z ${BOT_ID+x} ];'
 bot_id_set = os.system(command_bot_id_set)
